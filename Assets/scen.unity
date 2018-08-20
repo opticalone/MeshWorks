@@ -1436,8 +1436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e8f63851fa4824085a7e9fb3bde154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 2
-  gridSize: 64
+  size: 16
+  gridSize: 128
 --- !u!23 &2100489469
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1503,6 +1503,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0009bc05a266daa4180bc6eba1c706c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDepression: 1
+  maxDepression: 5
   OGverts: []
   modVerts: []
