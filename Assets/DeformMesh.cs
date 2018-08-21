@@ -6,17 +6,37 @@ using UnityEngine;
 public class DeformMesh : MonoBehaviour {
 
     public float maxDepression;
-    public Vector3[] OGverts;
-    public Vector3[] modVerts;
+    public List<Vector3> OGverts;
+    public List<Vector3> modVerts;
 
     private MeshGen plane;
     public void MeshRegenerated()
     {
         plane = GetComponent<MeshGen>();
-        OGverts = plane.mesh.vertices.ToArray();
-        modVerts = plane.mesh.vertices;
+        plane.mesh.MarkDynamic();
 
-        modVerts[5] = modVerts[5] + Vector3.down;
+        OGverts = plane.mesh.vertices.ToList();
+        modVerts = plane.mesh.vertices.ToList();
+        Debug.Log("oh, i generated a mesh. great.");
+    
+        
     }
-
+    public void AddDepression(Vector3 depressionPoint, float radius)
+    {
+        var worldPos4 = this.transform.worldToLocalMatrix * depressionPoint;
+        var worldPos = new Vector3(worldPos4.x, worldPos4.y, worldPos4.z);
+        for (int i = 0; i < modVerts.Count; ++i)
+        {
+            var distance = (worldPos - (modVerts[i] + Vector3.down * maxDepression)).magnitude;
+            if (distance<radius)
+            {
+                var newVert = OGverts[i] + Vector3.down * maxDepression;
+                modVerts.RemoveAt(i);
+                modVerts.Insert(i, newVert);
+            }
+           
+        }
+        plane.mesh.SetVertices(modVerts);
+        Debug.Log("hecc now im depressed");
+    }
 }
