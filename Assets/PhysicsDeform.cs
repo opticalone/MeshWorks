@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PhysicsDeform : MonoBehaviour {
 
-    public float collideRadius = .2f;
+    public float collideRadius = .5f;
     public DeformMesh deformMesh;
 	    private void OnCollisionStay(Collision collision)
     {

@@ -28,7 +28,7 @@ public class DeformMesh : MonoBehaviour {
         for (int i = 0; i < modVerts.Count; ++i)
         {
             var distance = (worldPos - (modVerts[i] + Vector3.down * maxDepression)).magnitude;
-            if (distance<radius)
+            if (distance < radius)
             {
                 var newVert = OGverts[i] + Vector3.down * maxDepression;
                 modVerts.RemoveAt(i);
