@@ -5,7 +5,7 @@ using UnityEngine;
 public class PhysicsDisplacementMapDeformer : MonoBehaviour {
 
     private bool isUpdateRequired;
-    public float collideRadius = .5f;
+    //public float collideRadius = .5f;
     public Texture2D deformTexture;
     public Material deformedMat;
 
@@ -24,23 +24,34 @@ public class PhysicsDisplacementMapDeformer : MonoBehaviour {
         }
         deformTexture.Apply();
         deformedMat.SetTexture("_DisplacementMap", deformTexture);
-        deformedMat.SetTexture("_MainTex", deformTexture);
+        //deformedMat.SetTexture("_MainTex", deformTexture);
     }
 
     private void OnCollisionStay(Collision collision)
     {
         foreach (var contact in collision.contacts)
         {
-            Ray ray = new Ray(contact.point + contact.normal, -contact.normal);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 2))
-            {
-                int x = Mathf.RoundToInt(size * hit.textureCoord.x);
-                int y = Mathf.RoundToInt(size * hit.textureCoord.y);
-                deformTexture.SetPixel(x, y, Color.green);
-                isUpdateRequired = true;
-                Debug.Log("hit at " + x + " and " + y);
-            }
+            Vector3 posDiff = this.transform.position - contact.point;
+            //posDiff = new Vector3(posDiff.x / this.transform.localScale.x, posDiff.y / this.transform.localScale.y, posDiff.z / this.transform.localScale.z);
+            float u = Vector3.Dot(posDiff, this.transform.right);
+            float v = Vector3.Dot(posDiff, this.transform.up);
+
+            u = .5f + u / this.transform.localScale.x; 
+            v = .5f * v / this.transform.localScale.y;
+
+            int x = size - Mathf.RoundToInt(size * u);
+            int y = size - Mathf.RoundToInt(size * v);
+
+            deformTexture.SetPixel(x, y, Color.green);
+            isUpdateRequired = true;
+            Debug.Log("hit at " + x + " and " + y);
+
+            //Ray ray = new Ray(contact.point + contact.normal, -contact.normal);
+            //RaycastHit hit;
+            //if (Physics.Raycast(ray, out hit, 2))
+            //{
+                
+            //}
        
         }
 

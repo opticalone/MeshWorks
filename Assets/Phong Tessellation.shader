@@ -21,9 +21,15 @@
 		float2 texcoord : TEXCOORD0;
 	};
 
+		fixed4 _Color;
+		sampler2D _MainTex;
+		sampler2D _DisplacementMap;
+		float _DisplacementAmmount;
+
 	void displacement(inout appdata v) 
 	{
-		
+		float disp = tex2Dlod(_DisplacementMap, float4(v.texcoord.xy,0,0)).g *_DisplacementAmmount;
+		v.vertex.xyz += v.normal * _DisplacementAmmount * (1 - disp);
 	}
 
 	float _Phong;
@@ -38,10 +44,7 @@
 		float2 uv_MainTex;
 	};
 
-	fixed4 _Color;
-	sampler2D _MainTex;
-	sampler2D _DisplacementMap;
-	float _DisplacementAmmount;
+	
 
 	void surf(Input IN, inout SurfaceOutput o) {
 		half4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
