@@ -38,10 +38,10 @@ public class Driver : MonoBehaviour {
         Drive();
         CheckWaypoint();
 	}
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(transform.position, nodes[currentNode].position);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.DrawLine(transform.position, nodes[currentNode].position);
+    //}
 
 
 
@@ -51,8 +51,8 @@ public class Driver : MonoBehaviour {
         Vector3 relativeVector = transform.InverseTransformPoint(nodes[currentNode].position);
 
         float newSteer = (relativeVector.x / relativeVector.magnitude) * maxSteerAngle;
-        fl.steerAngle = newSteer;
-        fr.steerAngle = newSteer;
+        fl.steerAngle = -newSteer;
+        fr.steerAngle = -newSteer;
         
 
     }
@@ -61,14 +61,21 @@ public class Driver : MonoBehaviour {
     {
         fl.motorTorque = -maxMotorTorque;
         fr.motorTorque = -maxMotorTorque;
-        bl.motorTorque = -maxMotorTorque;
-        br.motorTorque = -maxMotorTorque;
+        //bl.motorTorque = -maxMotorTorque;
+      //  br.motorTorque = -maxMotorTorque;
     }
     private void CheckWaypoint()
     {
         if (Vector3.Distance(transform.position, nodes[currentNode].position)< switchDistance)
         {
-
+            if (currentNode == nodes.Count - 1)
+            {
+                currentNode = 0;
+            }
+            else
+            {
+                currentNode++;
+            }
         }
     }
 }
