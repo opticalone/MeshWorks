@@ -28,7 +28,9 @@
 
 	void displacement(inout appdata v) 
 	{
+		
 		float disp = tex2Dlod(_DisplacementMap, float4(v.texcoord.xy,0,0)).g *_DisplacementAmmount;
+
 		v.vertex.xyz += v.normal * (_DisplacementAmmount -disp);
 	}
 

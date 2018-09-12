@@ -68,34 +68,8 @@ public class PhysicsDisplacementMapDeformer : MonoBehaviour {
                 Debug.LogError("hit at " + x + " and " + y);
             }
 
-            // don't do the rest kk thx
-
-            // do the raycast
-            // get the UV
-
-            /*
-            Vector3 posDiff = this.transform.position - contact.point;
-            //posDiff = new Vector3(posDiff.x / this.transform.localScale.x, posDiff.y / this.transform.localScale.y, posDiff.z / this.transform.localScale.z);
-            float u = Vector3.Dot(posDiff, this.transform.right);
-            float v = Vector3.Dot(posDiff, this.transform.up);
-
-            u = .5f + u / this.transform.localScale.x; 
-            v = .5f * v / this.transform.localScale.y;
-
-            int x = size - Mathf.RoundToInt(size * u);
-            int y = size - Mathf.RoundToInt(size * v);
+           
             
-            deformTexture.SetPixel(x, y, Color.green);
-            isUpdateRequired = true;
-            Debug.Log("hit at " + x + " and " + y);
-
-            //Ray ray = new Ray(contact.point + contact.normal, -contact.normal);
-            //RaycastHit hit;
-            //if (Physics.Raycast(ray, out hit, 2))
-            //{
-                
-            //}
-            */
         }
     }
 

@@ -17,17 +17,17 @@ public class BestPlayerControllerEber : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Vector3 input = new Vector3(Input.GetAxis("Horizontal"), bsGrav().y, (Input.GetAxis("Vertical")));        
+        Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));        
         rb.velocity = input * speed;     
         anim.SetFloat("Speed", rb.velocity.magnitude);
 	}
 
-    private Vector3 bsGrav()
-    {
-        if (Input.GetKey(KeyCode.Space))
-        {return Physics.gravity* -1;}
-        else
-        { return Physics.gravity; }
+    //private Vector3 bsGrav()
+    //{
+    //    if (Input.GetKey(KeyCode.Space))
+    //    {return Physics.gravity* -1;}
+    //    else
+    //    { return Physics.gravity; }
 
-    }
+    //}
 }

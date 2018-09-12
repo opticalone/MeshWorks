@@ -12,10 +12,13 @@ public class SmoothedCamera : MonoBehaviour
 
     public Vector3 offset;
 
-    void Update()
+    void FixedUpdate()
     {
-
-
+        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            StartCoroutine(Swap());
+        }
 
         Vector3 worldOff = target.TransformVector(offset);
         Vector3 targetpos = target.position + worldOff;
@@ -27,5 +30,12 @@ public class SmoothedCamera : MonoBehaviour
 
         offset.z += Input.GetAxisRaw("Mouse ScrollWheel") * 50;
         //offset.x = Mathf.Clamp(offset.x, -150, -25);
+    }
+    IEnumerator Swap()
+    {
+        float swapTemp = offset.x;
+       swapTemp = offset.x * -1f;
+        offset.x = swapTemp;
+        yield return new WaitForSecondsRealtime(1); 
     }
 }
