@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +8,7 @@ public class Driver : MonoBehaviour {
 
     public Transform path;
     public float maxSteerAngle = 45f;
+    public float minSteerAngle = 25f;
     public float maxMotorTorque = 100f;
     public float switchDistance = 2f;
     public WheelCollider fr;
@@ -50,19 +51,19 @@ public class Driver : MonoBehaviour {
     {
         Vector3 relativeVector = transform.InverseTransformPoint(nodes[currentNode].position);
 
-        float newSteer = (relativeVector.x / relativeVector.magnitude) * maxSteerAngle;
-        fl.steerAngle = -newSteer;
-        fr.steerAngle = -newSteer;
+        float newSteer = (relativeVector.x / relativeVector.magnitude) * Random.Range(minSteerAngle,maxSteerAngle);
+        fl.steerAngle = newSteer;
+        fr.steerAngle = newSteer;
         
 
     }
 
     private void Drive()
     {
-        fl.motorTorque = -maxMotorTorque;
-        fr.motorTorque = -maxMotorTorque;
-        //bl.motorTorque = -maxMotorTorque;
-      //  br.motorTorque = -maxMotorTorque;
+        fl.motorTorque = maxMotorTorque;
+        fr.motorTorque = maxMotorTorque;
+        bl.motorTorque = maxMotorTorque;
+        br.motorTorque = maxMotorTorque;
     }
     private void CheckWaypoint()
     {
