@@ -5,12 +5,22 @@ using UnityEngine;
 
 public class Driver : MonoBehaviour {
 
+    [Header("Car & motor")]
 
-    public Transform path;
+    public float maxMotorBoost = 1.3f;
+    public float motorBoost = 1.1f;
+    private float boost = 1.0f;
     public float maxSteerAngle = 45f;
     public float minSteerAngle = 25f;
     public float maxMotorTorque = 100f;
-    public float switchDistance = 2f;
+
+    [Header("wheels")]
+    public Transform path;
+    public float switchDistance = 18f;
+    public float maxSwitchDistance = 20f;
+    public float minSwitchDistance = 10f;
+
+    [ Header("wheels") ]
     public WheelCollider fr;
     public WheelCollider fl;
     public WheelCollider br;
@@ -29,6 +39,8 @@ public class Driver : MonoBehaviour {
             if (patrolTransforms[i] != path.transform)
             { nodes.Add(patrolTransforms[i]); }
         }
+        boost = Random.Range(motorBoost, maxMotorBoost);
+        switchDistance = Random.Range(maxSwitchDistance, minSwitchDistance);
     }
 	
 	// Update is called once per frame
@@ -39,10 +51,11 @@ public class Driver : MonoBehaviour {
         Drive();
         CheckWaypoint();
 	}
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawLine(transform.position, nodes[currentNode].position);
-    //}
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, nodes[currentNode].position);
+    }
 
 
 
@@ -51,19 +64,19 @@ public class Driver : MonoBehaviour {
     {
         Vector3 relativeVector = transform.InverseTransformPoint(nodes[currentNode].position);
 
-        float newSteer = (relativeVector.x / relativeVector.magnitude) * Random.Range(minSteerAngle,maxSteerAngle);
+        float newSteer = (relativeVector.x / relativeVector.magnitude) * maxSteerAngle;
         fl.steerAngle = newSteer;
         fr.steerAngle = newSteer;
-        
+       // Debug.Log(newSteer);
 
     }
 
     private void Drive()
     {
-        fl.motorTorque = maxMotorTorque;
-        fr.motorTorque = maxMotorTorque;
-        bl.motorTorque = maxMotorTorque;
-        br.motorTorque = maxMotorTorque;
+        fl.motorTorque = (maxMotorTorque * boost); 
+        fr.motorTorque = (maxMotorTorque * boost); 
+        bl.motorTorque = (maxMotorTorque * boost);
+        br.motorTorque = (maxMotorTorque * boost); 
     }
     private void CheckWaypoint()
     {
