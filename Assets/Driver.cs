@@ -6,38 +6,42 @@ using UnityEngine;
 
 public class Driver : MonoBehaviour {
 
-    [Header("Car & motor")]
+    [Header(" C a r   &   m o t o r ")]
 
     public float maxMotorBoost = 1.3f;
     public float motorBoost = 1.1f;
-    private float boost = 1.0f;
-    public float maxSteerAngle = 45f;
-    public float minSteerAngle = 25f;
+    private float boost = 1.0f; 
     public float maxMotorTorque = 100f;
     public float maxSpeed = 400f;
     public float currentSpeed;
-    [Header("brakes")]
-    public Vector3 CenterOfMass;
 
+    [Header(" b r a k e s ")]
+    public Vector3 CenterOfMass;
     public bool isBreaking = false;
+    public float brakeDistance = 30.0f;
     public GameObject brakeLights;
     //public Material brakeLightMat;
     public float maxBrakTorque = 150f;
 
-    [Header("wheels")]
+    [Header(" w h e e l s ")]
     public Transform path;
     public float switchDistance = 18f;
     public float maxSwitchDistance = 20f;
     public float minSwitchDistance = 10f;
+    public float maxSteerAngle = 45f;
+    public float minSteerAngle = 25f;
+    private float decidedSteerAngle;
 
-    [ Header("wheels") ]
+
+    [ Header(" w h e e l s   c  o l l i d e r ") ]
     public WheelCollider fr;
     public WheelCollider fl;
     public WheelCollider br;
     public WheelCollider bl;
 
-    [Header("sensors")]
+    [Header(" s e n s o r s ")]
 
+    public Transform sensorHolder;
     public float sensorLength = 10f;
     public float sensorOffset = 1f;
     public float sensorSideOffset = .5f;
@@ -59,6 +63,7 @@ public class Driver : MonoBehaviour {
         }
         boost = UnityEngine.Random.Range(motorBoost, maxMotorBoost);
         switchDistance = UnityEngine.Random.Range(maxSwitchDistance, minSwitchDistance);
+        decidedSteerAngle = UnityEngine.Random.Range(maxSteerAngle, minSteerAngle);
     }
 	
 	// Update is called once per frame
@@ -74,36 +79,45 @@ public class Driver : MonoBehaviour {
     private void Sense()
     {
         RaycastHit hit;
-        Vector3 SensorStartPos = transform.position;
+        Vector3 SensorStartPos = sensorHolder.position;
         SensorStartPos.z += sensorOffset;
         
-        if (Physics.Raycast(SensorStartPos,transform.forward, out hit,sensorLength))
+        if (Physics.Raycast(SensorStartPos,transform.forward, out hit, sensorLength))
         {
 
         }
-        Debug.DrawRay(SensorStartPos, hit.point);
+
+       // Debug.DrawLine(SensorStartPos, hit.point);
+
         SensorStartPos.x += sensorSideOffset;
+
+
         if (Physics.Raycast(SensorStartPos, transform.forward, out hit, sensorLength))
         {
 
         }
-        Debug.DrawRay(SensorStartPos, hit.point);
-        if (Physics.Raycast(SensorStartPos, Quaternion.AngleAxis(sensorSideAngle, transform.up)*transform.forward, out hit, sensorLength))
+
+      //  Debug.DrawLine(SensorStartPos, hit.point);
+        if (Physics.Raycast(SensorStartPos, Quaternion.AngleAxis(sensorSideAngle, transform.up) * transform.forward, out hit, sensorLength))
         {
 
         }
-        Debug.DrawRay(SensorStartPos, hit.point);
+     //   Debug.DrawLine(SensorStartPos, hit.point);
+
         SensorStartPos.x -= sensorSideOffset;
+
+
         if (Physics.Raycast(SensorStartPos, transform.forward, out hit, sensorLength))
         {
 
         }
-        Debug.DrawRay(SensorStartPos, hit.point);
+
+       // Debug.DrawLine(SensorStartPos, hit.point);
         if (Physics.Raycast(SensorStartPos, Quaternion.AngleAxis(-sensorSideAngle, transform.up) * transform.forward, out hit, sensorLength))
         {
 
         }
-        Debug.DrawRay(SensorStartPos, hit.point);
+      //  Debug.DrawLine(SensorStartPos, hit.point);
     }
 
     private void ApplyBrakes()
@@ -122,11 +136,11 @@ public class Driver : MonoBehaviour {
         }
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawLine(transform.position, nodes[currentNode].position);
-    //}
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(transform.position, nodes[currentNode].position);
+    }
 
 
 
@@ -135,7 +149,7 @@ public class Driver : MonoBehaviour {
     {
         Vector3 relativeVector = transform.InverseTransformPoint(nodes[currentNode].position);
 
-        float newSteer = (relativeVector.x / relativeVector.magnitude) * maxSteerAngle;
+        float newSteer = (relativeVector.x / relativeVector.magnitude) * decidedSteerAngle;
         fl.steerAngle = newSteer;
         fr.steerAngle = newSteer;
        // Debug.Log(newSteer);
@@ -145,25 +159,30 @@ public class Driver : MonoBehaviour {
     private void Drive()
     {
         currentSpeed = 2 * Mathf.PI * fl.radius * fl.rpm * 60 / 1000;
+
         if (currentSpeed < maxSpeed && !isBreaking)
         {
-            fl.motorTorque = (boost);
-            fr.motorTorque = (boost);
+            isBreaking = false;
             bl.motorTorque = (maxMotorTorque * boost);
             br.motorTorque = (maxMotorTorque * boost);
         }
         else
         {
+           // isBreaking = true;
             fl.motorTorque = 0;
-            fr.motorTorque = (0);
-            bl.motorTorque = (0);
-            br.motorTorque = (0);
+            fr.motorTorque = 0;
+            bl.motorTorque = 0;
+            br.motorTorque = 0;
+            if (currentSpeed < maxSpeed)
+            { isBreaking = false; }
         }
+       
     }
     private void CheckWaypoint()
     {
         if (Vector3.Distance(transform.position, nodes[currentNode].position)< switchDistance)
         {
+            
             if (currentNode == nodes.Count - 1)
             {
                 currentNode = 0;
@@ -172,6 +191,18 @@ public class Driver : MonoBehaviour {
             {
                 currentNode++;
             }
+          
         }
     }
+
+    private void SlowOnApproach()
+    {
+        if (Vector3.Distance(transform.position, nodes[currentNode].position) < brakeDistance)
+        {
+            isBreaking = true;
+
+        }
+        else { isBreaking = false; }
+    }
 }
+
