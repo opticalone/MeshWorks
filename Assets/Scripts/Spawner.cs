@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     public bool startSpawn;
     public int spawnMax;
     public float TimeToWait;
+    public float timeDelay = .5f;
     public float radius;
     public Transform spawnPoint;
 
@@ -36,13 +37,13 @@ public class Spawner : MonoBehaviour
         {
             if (enemyCount < spawnMax)
             {
-                yield return new WaitForSeconds(TimeToWait);
+                yield return new WaitForSeconds(TimeToWait + timeDelay);
 
                 Vector3 Spawnpos = (Random.insideUnitSphere * radius);
 
                 Spawnpos = spawnPoint.transform.position;
 
-
+                timeDelay += timeDelay;
 
                 // Spawnpos.y = 15;
                 GameObject spawnedEnemy = Instantiate(enemy, Spawnpos, transform.rotation);

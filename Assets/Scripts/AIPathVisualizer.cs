@@ -33,7 +33,7 @@ public class AIPathVisualizer : MonoBehaviour
             }
 
             Gizmos.DrawLine(previousNode, currentNode);
-            Gizmos.DrawWireSphere(currentNode, 20f);
+            Gizmos.DrawWireSphere(currentNode, 10f);
 
         }
     }
