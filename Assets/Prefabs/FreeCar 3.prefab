@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 114112119909906740}
   - component: {fileID: 136749317839454274}
   m_Layer: 0
-  m_Name: FreeCar 1
+  m_Name: FreeCar 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: -6.123234e-17, y: 1, z: 6.123234e-17, w: -3.7493994e-33}
-  m_LocalPosition: {x: -110.957245, y: 0.7449984, z: 145.94937}
+  m_LocalPosition: {x: -103.741425, y: 0.7449984, z: 144.91496}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4515001938632518}
@@ -328,7 +328,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 15a9d730c6f2d8e48bc91ddd5c3ef089, type: 2}
+  - {fileID: 2100000, guid: b29512aa53afbe44c8dcd54d722f787c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1463,8 +1463,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 5
-  m_Range: 1
+  m_Intensity: 8
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -1500,8 +1500,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 5
-  m_Range: 1
+  m_Intensity: 8
+  m_Range: 3
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -1558,19 +1558,21 @@ MonoBehaviour:
   CenterOfMass: {x: 0, y: -0.2, z: 0}
   isBreaking: 0
   brakeDistance: 30
-  brakeLights: {fileID: 1726604096994758}
-  maxBrakTorque: 150
+  brakeLights: {fileID: 1726604096994758, guid: a9422e01cdc202247abf6708a9a71215,
+    type: 2}
+  maxBrakTorque: 1500
   path: {fileID: 4729901619763026, guid: 3dc6a324d4beb1d4b8b851637763e006, type: 2}
   switchDistance: 18
   maxSwitchDistance: 15
   minSwitchDistance: 10
   maxSteerAngle: 50
   minSteerAngle: 50
-  fr: {fileID: 146940559223290030}
-  fl: {fileID: 146844696162218974}
-  br: {fileID: 146528068568945530}
-  bl: {fileID: 146643973795891956}
-  sensorHolder: {fileID: 4332887438280532}
+  fr: {fileID: 146940559223290030, guid: a9422e01cdc202247abf6708a9a71215, type: 2}
+  fl: {fileID: 146844696162218974, guid: a9422e01cdc202247abf6708a9a71215, type: 2}
+  br: {fileID: 146528068568945530, guid: a9422e01cdc202247abf6708a9a71215, type: 2}
+  bl: {fileID: 146643973795891956, guid: a9422e01cdc202247abf6708a9a71215, type: 2}
+  sensorHolder: {fileID: 4332887438280532, guid: a9422e01cdc202247abf6708a9a71215,
+    type: 2}
   sensorLength: 10
   sensorOffset: 0.5
   sensorSideOffset: 0.2

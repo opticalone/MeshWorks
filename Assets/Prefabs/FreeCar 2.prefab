@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 114112119909906740}
   - component: {fileID: 136749317839454274}
   m_Layer: 0
-  m_Name: FreeCar 3
+  m_Name: FreeCar 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: -6.123234e-17, y: 1, z: 6.123234e-17, w: -3.7493994e-33}
-  m_LocalPosition: {x: -103.741425, y: 0.7449984, z: 144.91496}
+  m_LocalPosition: {x: -107.81311, y: 0.7449984, z: 145.26622}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4515001938632518}
@@ -328,7 +328,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b29512aa53afbe44c8dcd54d722f787c, type: 2}
+  - {fileID: 2100000, guid: 19e339a67c4e10142a599edef7e00745, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1463,8 +1463,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 8
-  m_Range: 3
+  m_Intensity: 5
+  m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -1500,8 +1500,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 8
-  m_Range: 3
+  m_Intensity: 5
+  m_Range: 1
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -1552,20 +1552,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxMotorBoost: 1.8
   motorBoost: 1.1
-  maxMotorTorque: 80
-  maxSpeed: 25
+  maxMotorTorque: 3666
+  maxSpeed: 37
   currentSpeed: 0
   CenterOfMass: {x: 0, y: -0.2, z: 0}
   isBreaking: 0
   brakeDistance: 30
   brakeLights: {fileID: 1726604096994758}
-  maxBrakTorque: 150
+  maxBrakTorque: 1500
   path: {fileID: 4729901619763026, guid: 3dc6a324d4beb1d4b8b851637763e006, type: 2}
-  switchDistance: 0
-  maxSwitchDistance: 5
-  minSwitchDistance: 1
-  maxSteerAngle: 60
-  minSteerAngle: 35
+  switchDistance: 18
+  maxSwitchDistance: 15
+  minSwitchDistance: 10
+  maxSteerAngle: 50
+  minSteerAngle: 50
   fr: {fileID: 146940559223290030}
   fl: {fileID: 146844696162218974}
   br: {fileID: 146528068568945530}

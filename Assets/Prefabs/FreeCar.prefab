@@ -1559,7 +1559,7 @@ MonoBehaviour:
   isBreaking: 0
   brakeDistance: 30
   brakeLights: {fileID: 1726604096994758}
-  maxBrakTorque: 150
+  maxBrakTorque: 1500
   path: {fileID: 4729901619763026, guid: 3dc6a324d4beb1d4b8b851637763e006, type: 2}
   switchDistance: 18
   maxSwitchDistance: 15

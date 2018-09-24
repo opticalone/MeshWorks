@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 114112119909906740}
   - component: {fileID: 136749317839454274}
   m_Layer: 0
-  m_Name: FreeCar 2
+  m_Name: FreeCar 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +152,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: -6.123234e-17, y: 1, z: 6.123234e-17, w: -3.7493994e-33}
-  m_LocalPosition: {x: -107.81311, y: 0.7449984, z: 145.26622}
+  m_LocalPosition: {x: -110.957245, y: 0.7449984, z: 145.94937}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4515001938632518}
@@ -328,7 +328,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 19e339a67c4e10142a599edef7e00745, type: 2}
+  - {fileID: 2100000, guid: 15a9d730c6f2d8e48bc91ddd5c3ef089, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1559,7 +1559,7 @@ MonoBehaviour:
   isBreaking: 0
   brakeDistance: 30
   brakeLights: {fileID: 1726604096994758}
-  maxBrakTorque: 150
+  maxBrakTorque: 1500
   path: {fileID: 4729901619763026, guid: 3dc6a324d4beb1d4b8b851637763e006, type: 2}
   switchDistance: 18
   maxSwitchDistance: 15

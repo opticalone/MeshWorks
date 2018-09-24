@@ -805,4 +805,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176e904caac00fe41812a388801b4ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineColor: {r: 0.96996236, g: 1, b: 0, a: 1}
+  lineColor: {r: 1, g: 0.7194258, b: 0, a: 1}

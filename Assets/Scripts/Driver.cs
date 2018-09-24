@@ -22,6 +22,7 @@ public class Driver : MonoBehaviour {
     public GameObject brakeLights;
     //public Material brakeLightMat;
     public float maxBrakTorque = 150f;
+    public float breakMultiplier; 
 
     [Header(" w h e e l s ")]
     public Transform path;
@@ -64,6 +65,7 @@ public class Driver : MonoBehaviour {
         boost = UnityEngine.Random.Range(motorBoost, maxMotorBoost);
         switchDistance = UnityEngine.Random.Range(maxSwitchDistance, minSwitchDistance);
         decidedSteerAngle = UnityEngine.Random.Range(maxSteerAngle, minSteerAngle);
+        
     }
 	
 	// Update is called once per frame
@@ -124,10 +126,11 @@ public class Driver : MonoBehaviour {
 
     private void ApplyBrakes()
     {
+        breakMultiplier = currentSpeed / brakeDistance;
         if (isBreaking)
         {
-            br.brakeTorque = maxBrakTorque;
-            bl.brakeTorque = maxBrakTorque;
+            br.brakeTorque = maxBrakTorque *breakMultiplier;
+            bl.brakeTorque = maxBrakTorque *breakMultiplier;
             brakeLights.SetActive(true);
         }
         else
@@ -161,7 +164,7 @@ public class Driver : MonoBehaviour {
     private void Drive()
     {
         currentSpeed = 2 * Mathf.PI * fl.radius * fl.rpm * 60 / 1000;
-
+        
         if (currentSpeed < maxSpeed && !isBreaking)
         {
             
@@ -200,10 +203,17 @@ public class Driver : MonoBehaviour {
     {
         if (Vector3.Distance(transform.position, nodes[currentNode].position) < brakeDistance)
         {
-            isBreaking = true;
+            StartCoroutine(doBrakes());
 
         }
         else { isBreaking = false; }
+    }
+
+    IEnumerator doBrakes()
+    {
+        isBreaking = true;
+        yield return new WaitForSecondsRealtime(2);
+        isBreaking = false;
     }
 }
 
