@@ -63,6 +63,7 @@ public class Driver : MonoBehaviour {
             if (patrolTransforms[i] != path.transform)
             { nodes.Add(patrolTransforms[i]); }
         }
+
         boost = UnityEngine.Random.Range(motorBoost, maxMotorBoost);
         switchDistance = UnityEngine.Random.Range(maxSwitchDistance, minSwitchDistance);
         decidedSteerAngle = UnityEngine.Random.Range(maxSteerAngle, minSteerAngle);
@@ -73,9 +74,8 @@ public class Driver : MonoBehaviour {
 	void FixedUpdate ()
     {
         // Sense();
-        //LerpToSteer();
         ApplySteering();
-        ApplyBrakes();
+        //ApplyBrakes();
         Drive();
         CheckWaypoint();
         //SlowOnApproach();
@@ -146,7 +146,7 @@ public class Driver : MonoBehaviour {
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, nodes[currentNode].position);
     }
 
@@ -182,8 +182,8 @@ public class Driver : MonoBehaviour {
            // isBreaking = true;
             fl.motorTorque = 0;
             fr.motorTorque = 0;
-            bl.motorTorque = -1;
-            br.motorTorque = -1;
+            bl.motorTorque = 0;
+            br.motorTorque = 0;
           
         }
        

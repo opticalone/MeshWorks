@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: SquishMat
   m_Shader: {fileID: 4800000, guid: ee552e96a32b27648968f8ea02b57e9c, type: 3}
@@ -78,4 +78,4 @@ Material:
     m_Colors:
     - _Color: {r: 0.52295065, g: 1, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SquishVec: {r: -11.88, g: 0.36863065, b: -173.92, a: 0}
+    - _SquishVec: {r: -11.88, g: 0.5177809, b: -173.92, a: 0}
