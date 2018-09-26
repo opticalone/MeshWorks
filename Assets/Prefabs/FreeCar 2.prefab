@@ -2796,7 +2796,7 @@ MonoBehaviour:
   maxMotorBoost: 1.8
   motorBoost: 1.1
   maxMotorTorque: 175
-  maxSpeed: 45
+  maxSpeed: 35
   currentSpeed: 0
   CenterOfMass: {x: 0, y: -0.2, z: 0}
   isBreaking: 0
@@ -2804,7 +2804,7 @@ MonoBehaviour:
   brakeLights: {fileID: 0}
   maxBrakTorque: 5500
   breakMultiplier: 0
-  path: {fileID: 4277164686737976, guid: fb66960b61e4b5949904741d14a65bdb, type: 2}
+  path: {fileID: 4918083648737604, guid: 8eb4842edbbed704e896953d142593d8, type: 2}
   switchDistance: 10
   maxSwitchDistance: 10
   minSwitchDistance: 5

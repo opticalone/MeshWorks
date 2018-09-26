@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
         {
             if (enemyCount < spawnMax)
             {
-                yield return new WaitForSeconds((TimeToWait + (timeDelay/2))/2);
+                yield return new WaitForSeconds((TimeToWait + (timeDelay/2)));
 
                 Vector3 Spawnpos = (Random.insideUnitSphere * radius);
 

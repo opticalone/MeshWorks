@@ -144,11 +144,11 @@ public class Driver : MonoBehaviour {
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(transform.position, nodes[currentNode].position);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawLine(transform.position, nodes[currentNode].position);
+    //}
 
 
 
